@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="us">
 <head>
@@ -24,8 +23,7 @@
     <!-- Loading Screen -->
     <div id="loading-screen" class="hidden">
         <div class="loading-content">
-                             
-            <img src="" alt="plixesOS" class="loading-logo">
+            <img src="icons/pablo.png" alt="plixesOS" class="loading-logo">
             <h1>Welcome to plixesOS</h1>
             <p class="made-by">made by y4kVR</p>
             <div class="loading-bar-container">
@@ -59,7 +57,7 @@
     <!-- Taskbar -->
     <div id="taskbar" class="taskbar hidden">
         <div class="start-button" onclick="toggleStartMenu()">
-            <img src="" alt="Start" class="icon-img-small">
+            <img src="icons/pablo.png" alt="Start" class="icon-img-small">
             <span>Start</span>
         </div>
         <div class="taskbar-items"></div>
@@ -160,6 +158,27 @@
             </div>
         </div>
     </div>
+
+    <div id="minecraft-window" class="window hidden">
+        <div class="window-header" onmousedown="startDrag(event, 'minecraft')">
+            <div class="window-title">
+                <img src="icons/minecraft.png" alt="Minecraft" class="window-title-icon">
+                <span>Minecraft Free</span>
+            </div>
+            <div class="window-controls">
+                <button onclick="minimizeWindow('minecraft')" class="disabled-btn" disabled>—</button>
+                <button onclick="toggleMaximize('minecraft')" class="disabled-btn" disabled>□</button>
+                <button class="close-btn disabled-btn" onclick="closeMinecraftWindow()" disabled>×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="ransomware-screen">
+                <h2>🚨 YOUR COMPUTER HAS BEEN LOCKED 🚨</h2>
+                <p>All your files have been encrypted!</p>
+                <p>To unlock your system, enter the code:</p>
+                <input type="password" id="ransom-code" placeholder="Enter unlock code">
+                <button onclick="checkRansomCode()">Unlock</button>
+                <p id="ransom-message"></p>
             </div>
         </div>
     </div>
