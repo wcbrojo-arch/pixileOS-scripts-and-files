@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plixesOS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Selection Screen -->
+    <div id="language-screen">
+        <div class="language-selector">
+            <h1>Select Language / Sprache wählen / Выберите язык / Изаберите језик</h1>
+            <div class="language-buttons">
+                <button onclick="selectLanguage('en')">English</button>
+                <button onclick="selectLanguage('de')">Deutsch</button>
+                <button onclick="selectLanguage('ru')">Русский</button>
+                <button onclick="selectLanguage('sr')">Српски</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="hidden">
+        <div class="loading-content">
+                             
+            <img src="" alt="plixesOS" class="loading-logo">
+            <h1>Welcome to plixesOS</h1>
+            <p class="made-by">made by y4kVR</p>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="desktop" class="hidden">
+        <div class="desktop-icons">
+            <div class="icon" onclick="openApp('pong')">
+                <img src="icons/pong.png" alt="Pong" class="icon-img">
+                <span>Pong</span>
+            </div>
+            <div class="icon" onclick="openApp('trash')">
+                <img src="icons/trash.png" alt="Trash" class="icon-img">
+                <span>Trash</span>
+            </div>
+            <div class="icon" onclick="openApp('browser')">
+                <img src="icons/browser.png" alt="Browser" class="icon-img">
+                <span>Browser</span>
+            </div>
+            <div class="icon" onclick="openApp('minecraft')">
+                <img src="icons/minecraft.png" alt="Minecraft" class="icon-img">
+                <span>Minecraft Free</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar" class="taskbar hidden">
+        <div class="start-button" onclick="toggleStartMenu()">
+            <img src="" alt="Start" class="icon-img-small">
+            <span>Start</span>
+        </div>
+        <div class="taskbar-items"></div>
+        <div class="system-tray">
+            <span id="clock">5:03</span>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="start-menu hidden">
+        <div class="start-menu-content">
+            <div class="menu-item" onclick="openApp('pong')">
+                <img src="icons/pong.png" alt="Pong" class="menu-icon">
+                <span>Pong</span>
+            </div>
+            <div class="menu-item" onclick="openApp('trash')">
+                <img src="icons/trash.png" alt="Trash" class="menu-icon">
+                <span>Trash</span>
+            </div>
+            <div class="menu-item" onclick="openApp('browser')">
+                <img src="icons/browser.png" alt="Browser" class="menu-icon">
+                <span>Browser</span>
+            </div>
+            <div class="menu-item" onclick="openApp('minecraft')">
+                <img src="icons/minecraft.png" alt="Minecraft" class="menu-icon">
+                <span>Minecraft Free</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Windows -->
+    <div id="pong-window" class="window hidden">
+        <div class="window-header" onmousedown="startDrag(event, 'pong')">
+            <div class="window-title">
+                <img src="icons/pong.png" alt="Pong" class="window-title-icon">
+                <span>Pong</span>
+            </div>
+            <div class="window-controls">
+                <button onclick="minimizeWindow('pong')">—</button>
+                <button onclick="toggleMaximize('pong')">□</button>
+                <button class="close-btn" onclick="closeWindow('pong')">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="pong-container">
+                <div class="pong-score">Player: 0 - Computer: 0</div>
+                <canvas id="pong-canvas"></canvas>
+                <div class="game-instructions">
+                    <p>Use mouse to move paddle. First to 5 points wins!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="trash-window" class="window hidden">
+        <div class="window-header" onmousedown="startDrag(event, 'trash')">
+            <div class="window-title">
+                <img src="icons/trash.png" alt="Trash" class="window-title-icon">
+                <span>Trash</span>
+            </div>
+            <div class="window-controls">
+                <button onclick="minimizeWindow('trash')">—</button>
+                <button onclick="toggleMaximize('trash')">□</button>
+                <button class="close-btn" onclick="closeWindow('trash')">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="trash-content">
+                <div class="trash-icon">🗑️</div>
+                <h2>Trash is Empty</h2>
+                <p>No files to delete</p>
+                <div class="trash-stats">
+                    <p>0 items · 0 bytes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="browser-window" class="window hidden">
+        <div class="window-header" onmousedown="startDrag(event, 'browser')">
+            <div class="window-title">
+                <img src="icons/browser.png" alt="Browser" class="window-title-icon">
+                <span>Browser</span>
+            </div>
+            <div class="window-controls">
+                <button onclick="minimizeWindow('browser')">—</button>
+                <button onclick="toggleMaximize('browser')">□</button>
+                <button class="close-btn" onclick="closeWindow('browser')">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="browser-content">
+                <h2>No Internet Access</h2>
+                <p>Unable to establish network connection. Please check your network settings and try again.</p>
+                <div class="browser-error">
+                    <p>ERR_INTERNET_DISCONNECTED</p>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
