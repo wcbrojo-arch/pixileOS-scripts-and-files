@@ -1,0 +1,579 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #e0e0e0;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* Language Selection Screen */
+#language-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0c0c0c 0%, #2a2a2a 100%);
+    z-index: 1000;
+}
+
+.language-selector {
+    background: rgba(40, 40, 40, 0.9);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid #444;
+    backdrop-filter: blur(10px);
+}
+
+.language-selector h1 {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    color: #f0f0f0;
+    font-size: 1.8rem;
+}
+
+.language-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.language-buttons button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #4a4a4a;
+    color: white;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.language-buttons button:hover {
+    background: #5a5a5a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0c0c0c 0%, #2a2a2a 100%);
+    z-index: 999;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.loading-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.loading-content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.made-by {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 3rem;
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.loading-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Desktop */
+#desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 50px);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    grid-auto-rows: min-content;
+    gap: 25px;
+    align-content: start;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23222" width="100" height="100"/><path fill="%23333" d="M0 0L100 100M100 0L0 100"/></svg>') 0 0/100px 100px;
+}
+
+.desktop-icons {
+    display: contents;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon:active {
+    transform: scale(0.95);
+}
+
+.icon-img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+}
+
+.icon span {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(35, 35, 35, 0.95);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-top: 1px solid #555;
+    backdrop-filter: blur(10px);
+    z-index: 900;
+}
+
+.start-button {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    border: 1px solid #555;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.start-button:hover {
+    background: linear-gradient(to bottom, #5a5a5a, #4a4a4a);
+}
+
+.icon-img-small {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    object-fit: contain;
+}
+
+.taskbar-items {
+    flex: 1;
+    display: flex;
+    gap: 5px;
+    height: 100%;
+    align-items: center;
+}
+
+.taskbar-item {
+    padding: 8px 15px;
+    background: rgba(60, 60, 60, 0.7);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 35px;
+    border: 1px solid #555;
+}
+
+.taskbar-item:hover {
+    background: rgba(80, 80, 80, 0.7);
+}
+
+.taskbar-item.active {
+    background: rgba(90, 90, 90, 0.9);
+}
+
+.taskbar-item-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.system-tray {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0 15px;
+    height: 100%;
+    border-left: 1px solid #555;
+}
+
+/* Start Menu */
+.start-menu {
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    width: 250px;
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid #555;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    backdrop-filter: blur(10px);
+    z-index: 800;
+}
+
+.start-menu-content {
+    padding: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    gap: 10px;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Windows */
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 500px;
+    background: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    resize: both;
+    min-width: 400px;
+    min-height: 300px;
+}
+
+.window-header {
+    background: linear-gradient(to bottom, #4a4a4a, #3a3a4a);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    cursor: move;
+    user-select: none;
+}
+
+.window-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.window-title-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-controls button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: #5a5a5a;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.window-controls button:hover {
+    background: #6a6a6a;
+}
+
+.close-btn:hover {
+    background: #e74c3c !important;
+}
+
+.disabled-btn {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.window-content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+    background: #1a1a1a;
+}
+
+/* Pong Game Styles */
+.pong-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    color: white;
+}
+
+.pong-score {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#pong-canvas {
+    background: #000;
+    border: 2px solid #444;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex: 1;
+    width: 100%;
+}
+
+.game-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Trash Styles */
+.trash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    text-align: center;
+}
+
+.trash-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.trash-content h2 {
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+}
+
+.trash-content p {
+    color: #aaa;
+    margin-bottom: 1rem;
+}
+
+.trash-stats {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Browser Styles */
+.browser-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    text-align: center;
+}
+
+.browser-content h2 {
+    margin-bottom: 1rem;
+    color: #e74c3c;
+}
+
+.browser-content p {
+    color: #aaa;
+    margin-bottom: 1rem;
+    max-width: 400px;
+}
+
+.browser-error {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid #e74c3c;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+/* Minecraft Ransomware Styles */
+.ransomware-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #e74c3c;
+    text-align: center;
+    background: #1a0000;
+}
+
+.ransomware-screen h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.ransomware-screen p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#ransom-code {
+    padding: 10px;
+    margin: 1rem 0;
+    width: 200px;
+    border: 1px solid #e74c3c;
+    background: #2a0000;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.ransomware-screen button {
+    padding: 10px 20px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.ransomware-screen button:hover {
+    background: #c0392b;
+}
+
+#ransom-message {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Window States */
+.window.maximized {
+    width: 100% !important;
+    height: calc(100% - 50px) !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    border-radius: 0;
+    border: none;
+}
+
+.window.fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    border-radius: 0;
+    border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .desktop {
+        grid-template-columns: repeat(auto-fill, 70px);
+        gap: 15px;
+    }
+    
+    .icon {
+        width: 70px;
+    }
+    
+    .window {
+        width: 95% !important;
+        height: 80% !important;
+    }
+}
